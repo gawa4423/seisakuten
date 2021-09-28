@@ -9,7 +9,7 @@ let speed=0.1;
 let correct={x:0.61,y:0.12};
 let alpha=0;
 let easeTime=0;
-
+let pRatio=1;
 
 const debug=true;
 const mode = "pc";
@@ -31,35 +31,37 @@ function setup() {
   //初期化
   position={x:width*0.25,y:height*0.25};
   background(0);
+  pRatio=window.devicePixelRatio;
+  if(!pRatio){pRatio=1;}
 }
 
 function draw() {
   background(0, 12);
   
-
-  
   if(debug){
     fill(255,255,255);
     textSize(30);
-    text("w"+width+", h"+height,0,0,200,200);
-    
+    text("w:"+width+", h"+height,0,0,200,200);
+    text("X:"+mouseX+"Y:"+mouseY,0,40,400,300)
+    text("devicePixelRatio : "+pRatio,0,80,400,300);
   }
+  
   if(mouseIsPressed){
       easeTime++;
       if(alpha<=255){alpha=255*(easeTime/120)^4;}
       //console.log("mouseIsPressed")
     
-      d.x = mouseX-position.x-correct.x*700
-      d.x=d.x*speed*deltaTime/50;
+      d.x = mouseX-position.x-correct.x*350*pRatio;
+      d.x=d.x*speed*deltaTime/60;
     
-      d.y = mouseY-position.y-correct.y*700;
-      d.y=d.y*speed*deltaTime/50;
+      d.y = mouseY-position.y-correct.y*350*pRatio;
+      d.y=d.y*speed*deltaTime/60;
     
       //d = normalize(d.x,d.y);
       position.x+=d.x;
       position.y+=d.y;
       tint(255, alpha);
-      image(img,position.x,position.y,700,700);
+      image(img,position.x,position.y,350*pRatio,350*pRatio);
 
       //console.log(alpha);
   }else{
@@ -70,13 +72,7 @@ function draw() {
   //circle(width*0.61,width*0.12,10)
 }
 
-function fingerControl(ptouchX,ptouchY){
-  let dx=0,dy=0;
-  dx = ptouchX-position.x;
-  dy = ptouchY-position.y;
-  console.log(dx,dy);
-  return {x:dx,y:dy};
-}
+
 
 function normalize(vx,vy){
   let z=Math.sqrt(vx^2+vy^2);
