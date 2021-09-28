@@ -1,0 +1,121 @@
+let ptouchX=0;
+let ptouchY=0;
+
+
+let canvas={w:0,h:0};
+let position;//現在位置
+let d={x:0,y:0};;//加速方向
+let speed=0.1;
+let correct={x:0.61,y:0.12};
+let alpha=0;
+let easeTime=0;
+
+
+const debug=true;
+const mode = "pc";
+// const mode = "phone";
+
+function preload() {
+    img = loadImage('yubi.png');
+}
+
+function setup() { 
+  if(debug){
+    canvas.w=windowWidth;
+    canvas.h=windowHeight;
+  }else{
+    canvas.w=displayWidth;
+    canvas.h=displayHeight;
+  }
+  createCanvas(canvas.w,canvas.h);
+  //初期化
+  position={x:width*0.25,y:height*0.25};
+  background(0);
+}
+
+function draw() {
+  background(0, 12);
+  if(debug){
+    // console.log("w",width,"h",height);
+  }
+  if(mouseIsPressed){
+      easeTime++;
+      if(alpha<=255){alpha=255*(easeTime/120)^4;}
+      console.log("mouseIsPressed")
+      d.x = mouseX-position.x-width*0.5*correct.x
+      d.x=d.x*speed*deltaTime/50;
+    
+      d.y = mouseY-position.y-width*0.5*correct.y;
+      d.y=d.y*speed*deltaTime/50;
+      //d = normalize(d.x,d.y);
+      position.x+=d.x;
+      position.y+=d.y;
+      tint(255, alpha);    image(img,position.x,position.y,width*0.5,width*0.5);
+
+      console.log(alpha);
+  }else{
+    alpha=0;
+    easeTime=0;
+  }
+  //image(img,0,0,width,width);
+  //circle(width*0.61,width*0.12,10)
+}
+
+function fingerControl(ptouchX,ptouchY){
+  let dx=0,dy=0;
+  dx = ptouchX-position.x;
+  dy = ptouchY-position.y;
+  console.log(dx,dy);
+  return {x:dx,y:dy};
+}
+
+function normalize(vx,vy){
+  let z=Math.sqrt(vx^2+vy^2);
+  if(z==0){
+    return {x:0,y:0};
+  }
+  return {x:vx/z,y:vy/z};
+}
+
+
+
+//debug
+
+// if(mode=="pc")
+// function mouseClicked() {
+//   ptouchX = mouseX;
+//   ptouchY = mouseY;
+//   console.log("clicked");
+// }
+// function mouseDragged(){
+//   console.log("dragged");
+//   ptouchX = mouseX;
+//   ptouchY = mouseY;
+// }
+// function mouseReleased(){
+
+//   console.log("released");
+// }
+
+if(mode=="phone"){
+function touchStarted() {            
+  ptouchX = touches[0].x;
+  ptouchY = touches[0].y;
+  // prevent default
+  return false;
+}
+
+function touchMoved() {
+  ptouchX = touches[0].x;
+  ptouchY = touches[0].y;
+  // prevent default
+  return false;
+}
+
+function touchEnded(){
+  ptouchX = touches[0].x;
+  ptouchY = touches[0].y;
+  // prevent default
+  return false;
+}
+}
