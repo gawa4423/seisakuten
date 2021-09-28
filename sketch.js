@@ -4,7 +4,7 @@ let ptouchY=0;
 
 let canvas={w:0,h:0};
 let position;//現在位置
-let d={x:0,y:0};;//加速方向
+let d={x:0,y:0};//加速方向
 let speed=0.1;
 let correct={x:0.61,y:0.12};
 let alpha=0;
@@ -42,15 +42,15 @@ function draw() {
       easeTime++;
       if(alpha<=255){alpha=255*(easeTime/120)^4;}
       console.log("mouseIsPressed")
-      d.x = mouseX-position.x-width*0.5*correct.x
+      d.x = mouseX-position.x-correct.x*700
       d.x=d.x*speed*deltaTime/50;
     
-      d.y = mouseY-position.y-width*0.5*correct.y;
+      d.y = mouseY-position.y-correct.y*700;
       d.y=d.y*speed*deltaTime/50;
       //d = normalize(d.x,d.y);
       position.x+=d.x;
       position.y+=d.y;
-      tint(255, alpha);    image(img,position.x,position.y,width*0.5,width*0.5);
+      tint(255, alpha);    image(img,position.x,position.y,700,700);
 
       console.log(alpha);
   }else{
