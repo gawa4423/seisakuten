@@ -35,24 +35,32 @@ function setup() {
 
 function draw() {
   background(0, 12);
+  
+
+  
   if(debug){
-    // console.log("w",width,"h",height);
+    fill(255,255,255);
+    textSize(30);
+    text("w"+width+", h"+height,0,0,200,200);
+    
   }
   if(mouseIsPressed){
       easeTime++;
       if(alpha<=255){alpha=255*(easeTime/120)^4;}
-      console.log("mouseIsPressed")
+      //console.log("mouseIsPressed")
+    
       d.x = mouseX-position.x-correct.x*700
       d.x=d.x*speed*deltaTime/50;
     
       d.y = mouseY-position.y-correct.y*700;
       d.y=d.y*speed*deltaTime/50;
+    
       //d = normalize(d.x,d.y);
       position.x+=d.x;
       position.y+=d.y;
       tint(255, alpha);    image(img,position.x,position.y,700,700);
 
-      console.log(alpha);
+      //console.log(alpha);
   }else{
     alpha=0;
     easeTime=0;
