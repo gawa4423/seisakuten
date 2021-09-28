@@ -58,7 +58,8 @@ function draw() {
       //d = normalize(d.x,d.y);
       position.x+=d.x;
       position.y+=d.y;
-      tint(255, alpha);    image(img,position.x,position.y,700,700);
+      tint(255, alpha);
+      image(img,position.x,position.y,700,700);
 
       //console.log(alpha);
   }else{
