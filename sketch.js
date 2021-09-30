@@ -15,9 +15,14 @@ const debug=true;
 const mode = "pc";
 // const mode = "phone";
 
+let widthCM=0;
+
+
+
 function preload() {
     img = loadImage('yubi.png');
 }
+
 
 function setup() { 
   if(debug){
@@ -33,7 +38,17 @@ function setup() {
   background(0);
   pRatio=window.devicePixelRatio;
   if(!pRatio){pRatio=1;}
+  console.log(screen.width)
+  
+  //画面サイズ
+var pixPer1CM = $('#meter').width();
+var CMPerPix = 1 / pixPer1CM;
+    widthCM = windowWidth * CMPerPix;
+    console.log(pixPer1CM)
+    console.log(widthCM);
 }
+
+
 
 function draw() {
   background(0, 12);
@@ -44,6 +59,7 @@ function draw() {
     text("w:"+width+", h"+height,0,0,200,200);
     text("X:"+mouseX+"Y:"+mouseY,0,40,400,300)
     text("devicePixelRatio : "+pRatio,0,80,400,300);
+    text("画面物理サイズw : "+widthCM,0,120,500,300);
   }
   
   if(mouseIsPressed){
@@ -66,7 +82,7 @@ function draw() {
       //console.log(alpha);
   }else{
     alpha=0;
-    easeTime=0;
+    easeTime=0;    
   }
   //image(img,0,0,width,width);
   //circle(width*0.61,width*0.12,10)
