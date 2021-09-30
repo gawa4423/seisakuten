@@ -67,17 +67,17 @@ function draw() {
       if(alpha<=255){alpha=255*(easeTime/120)^4;}
       //console.log("mouseIsPressed")
     
-      d.x = mouseX-position.x-correct.x*1400*pRatio;
+      d.x = mouseX-position.x-correct.x*1000*pRatio;
       d.x=d.x*speed*deltaTime/60;
     
-      d.y = mouseY-position.y-correct.y*1400*pRatio;
+      d.y = mouseY-position.y-correct.y*1000*pRatio;
       d.y=d.y*speed*deltaTime/60;
     
       //d = normalize(d.x,d.y);
       position.x+=d.x;
       position.y+=d.y;
       tint(255, alpha);
-      image(img,position.x,position.y,1400*pRatio,1400*pRatio);
+      image(img,position.x,position.y,1000*pRatio,1000*pRatio);
 
       //console.log(alpha);
   }else{
