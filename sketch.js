@@ -136,12 +136,10 @@ function drawLine(time){
 //   return false;
 // }
 
-// function touchMoved() {
-//   ptouchX = touches[0].x;
-//   ptouchY = touches[0].y;
-//   // prevent default
-//   return false;
-// }
+function touchMoved() {
+    // prevent default
+    return false;
+}
 
 // function touchEnded(){
 //   ptouchX = touches[0].x;
