@@ -2,7 +2,7 @@ var
   cursor = $(".cursor"),
   follower = $(".follower"),
   cWidth = 8,
-  fWidth = 40,
+  fWidth = 30,
   delay = 10,
   mouseX = 0,
   mouseY = 0,
