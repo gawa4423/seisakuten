@@ -31,8 +31,22 @@ video{
   text-align: center;
   margin:20px;
 }
+.titleimage{
+  max-width: 500px;
+  min-width:300px;
+  width:50%;
+  height:auto;
+  margin:30px;
+}
 
-img{
+.QR{
+  max-width: 150px;
+  min-width:100px;
+  width:10%;
+  height:auto;
+}
+
+.QR{
   max-width: 150px;
   min-width:100px;
   width:10%;
