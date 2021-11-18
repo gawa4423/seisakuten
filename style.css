@@ -6,7 +6,8 @@ body {
   overflow: hidden
 }
 html,body{
-  height: 100%;
+  height: 100vh;
+  width:100vw;
 }
 #wrapper{
   /*
@@ -18,12 +19,16 @@ html,body{
   flex-flow: column;
 }
 
-.titleimage{
-  display: block;
+#contents{
+  position: relative;
+  text-align: center;
+}
 
-  width:100%;
+img{
+  max-width:100vw;
+  max-height:100vh;
   height:auto;
-  margin: 0 auto;
+  width:auto;
 }
 
 
